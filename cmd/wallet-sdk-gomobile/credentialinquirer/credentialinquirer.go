@@ -8,6 +8,7 @@ SPDX-License-Identifier: Apache-2.0
 package credentialinquirer
 
 import (
+	"github.com/hyperledger/aries-framework-go/pkg/doc/verifiable"
 	"github.com/trustbloc/wallet-sdk/cmd/wallet-sdk-gomobile/api"
 	"github.com/trustbloc/wallet-sdk/cmd/wallet-sdk-gomobile/presentationexchange"
 )
@@ -44,5 +45,8 @@ type Credentials struct {
 // See the Credentials struct for more information on how to use it with this method.
 // Credentials are returned as a JSON array.
 func (*Inquirer) Query(query string, credentials *Credentials) ([]byte, error) {
+	thing, err := verifiable.ParseCredential(nil, nil)
+	println(thing)
+	println(err)
 	return []byte("Example credentials"), nil
 }
