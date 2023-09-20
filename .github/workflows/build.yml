@@ -146,7 +146,7 @@ jobs:
           brew remove --ignore-dependencies qemu
           curl -o ./qemu.rb https://raw.githubusercontent.com/Homebrew/homebrew-core/dc0669eca9479e9eeb495397ba3a7480aaa45c2e/Formula/qemu.rb
           brew install ./qemu.rb
-          colima start
+          codesign --sign - --entitlements entitlements.xml --force /usr/local/bin/qemu-system-$(uname -m | sed -e s/arm64/aarch64/)
           export PATH=$PATH:$GOPATH/bin
           echo $PATH
           make prepare-integration-test-flutter
@@ -228,7 +228,7 @@ jobs:
           brew remove --ignore-dependencies qemu
           curl -o ./qemu.rb https://raw.githubusercontent.com/Homebrew/homebrew-core/dc0669eca9479e9eeb495397ba3a7480aaa45c2e/Formula/qemu.rb
           brew install ./qemu.rb
-          colima start
+          codesign --sign - --entitlements entitlements.xml --force /usr/local/bin/qemu-system-$(uname -m | sed -e s/arm64/aarch64/)
           export PATH=$PATH:$GOPATH/bin
           echo $PATH
           go install golang.org/x/mobile/cmd/gomobile@latest
